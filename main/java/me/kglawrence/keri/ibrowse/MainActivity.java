@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
   }
 
+
+  //Need to check for valid value before adding to db
   public void addStudent(View view) {
     Intent intent = new Intent(this, StudentList.class);
 
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     EditText readingLevel = (EditText) findViewById(R.id.reading_level);
     int rl = (int) readingLevel.getText().toString().charAt(0);
 
+    //modify if picture login is added
     Users user = new Users(id, fn, ln, rl, "red", "square");
     user.save();
 

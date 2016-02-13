@@ -2,6 +2,8 @@ package me.kglawrence.keri.ibrowse;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -31,6 +33,13 @@ public class StudentList extends AppCompatActivity {
 
         studentList.setAdapter(adapter);
 
-
+        studentList.setOnItemClickListener(mMessageClickedHandler);
     }
+
+    private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView.OnItemClickListener() {
+        public void onItemClick(AdapterView parent, View v, int position, long id) {
+            // Do something in response to the click
+        }
+    };
+
 }
