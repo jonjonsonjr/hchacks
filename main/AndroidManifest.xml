@@ -20,7 +20,7 @@
             android:value="true" />
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
-            android:value="me.kglawrence" />
+            android:value="me.kglawrence.keri.ibrowse" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -29,6 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".StudentList">Student List</activity>
     </application>
 
 </manifest>

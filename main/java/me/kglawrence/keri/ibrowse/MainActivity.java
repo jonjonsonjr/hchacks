@@ -1,5 +1,6 @@
 package me.kglawrence.keri.ibrowse;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public void addStudent(View view) {
+    Intent intent = new Intent(this, StudentList.class);
+
     EditText studentId= (EditText) findViewById(R.id.student_id);
     int id = Integer.parseInt(studentId.getText().toString());
 
@@ -28,5 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     Users user = new Users(id, fn, ln, rl, "red", "square");
     user.save();
+
+    startActivity(intent);
   }
 }
