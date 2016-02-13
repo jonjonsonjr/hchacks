@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">I Browse</string>
+    <string name="app_name">iBrowse</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="student_id">Student ID</string>
+    <string name="reading_level">Reading Level</string>
+    <string name="button_send">Submit</string>
 </resources>

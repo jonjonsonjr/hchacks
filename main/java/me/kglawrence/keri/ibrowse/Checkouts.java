@@ -9,20 +9,26 @@ import java.util.Date;
 public class Checkouts extends SugarRecord {
 
     int id;
-    Date timeIn;
-    Date timeOut;
+    long timeIn;
+    long timeOut;
     Books book;
     Users user;
 
     public Checkouts() {
     }
 
-    public Checkouts(int id, Date timeIn, Date timeOut, Books book, Users user) {
+    public Checkouts(int id, Books book, Users user) {
         this.id = id;
-        this.timeIn = timeIn;
-        this.timeOut = timeOut;
+        Date date = new Date();
+        timeOut = date.getTime();
         this.book = book;
         this.user = user;
     }
+
+    public void setTimeIn() {
+        Date date = new Date();
+        timeIn = date.getTime();
+    }
+
 
 }
