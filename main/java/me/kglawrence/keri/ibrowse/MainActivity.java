@@ -28,10 +28,13 @@ public class MainActivity extends AppCompatActivity {
 
     EditText studentId= (EditText) findViewById(R.id.student_id);
     int id = Integer.parseInt(studentId.getText().toString());
-    if (Users.findById(Users.class, 1) != null) {
-      Toast.makeText(context, "Student id already in use.", duration).show();
-      flag = true;
-    }
+
+    //Fix later if time
+    //if (Users.find(Users.class, "id = ?", "id").size() < 1) {
+    //  System.out.println(Users.find(Users.class, "id = ?", "id"));
+    //  Toast.makeText(context, "Student id already in use.", duration).show();
+    //  flag = true;
+    //}
 
     EditText firstName = (EditText) findViewById(R.id.first_name);
     String fn = firstName.getText().toString();
@@ -44,9 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
     //modify if picture login is added
     Users user = new Users(id, fn, ln, rl, "red", "square");
-    user.save();
 
-    if (flag != true){
+    if (!flag) {
+
+      user.save();
+
       startActivity(intent);
     }
   }
