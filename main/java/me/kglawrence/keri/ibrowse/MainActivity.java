@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Fix later if time
     //if (Users.find(Users.class, "id = ?", "id").size() < 1) {
-    //  System.out.println(Users.find(Users.class, "id = ?", "id"));
+    //  System.out.println(Users.find(Users.class, "number = ?", new String{id}));
     //  Toast.makeText(context, "Student id already in use.", duration).show();
     //  flag = true;
     //}

@@ -7,7 +7,7 @@ import com.orm.SugarRecord;
  */
 public class Users extends SugarRecord {
 
-    int id;
+    int number;
     String firstName;
     String lastName;
     int readingLevel;
@@ -17,8 +17,8 @@ public class Users extends SugarRecord {
     public Users() {
     }
 
-    public Users(int id, String firstName, String lastName, int readingLevel, String color, String shape) {
-        this.id = id;
+    public Users(int number, String firstName, String lastName, int readingLevel, String color, String shape) {
+        this.number = number;
         this.firstName = firstName;
         this.lastName = lastName;
         this.readingLevel = readingLevel;

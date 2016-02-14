@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="me.kglawrence.keri.ibrowse.StudentList">
+    tools:context="me.kglawrence.keri.ibrowse.EachStudentList">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,21 +17,13 @@
         android:weightSum="1">
 
         <Button
-            android:id="@+id/add_student"
-            android:layout_weight=".5"
-            android:layout_width="0dp"
+            android:id="@+id/teacher_checkout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/add_student" />
+            android:text="@string/add_student"
+            android:onClick="teacherCheckout"/>
 
-        <Button
-            android:id="@+id/add_book"
-            android:layout_weight=".5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/add_book"
-            />
 
     </LinearLayout>
 
@@ -42,3 +34,4 @@
     </ListView>
 
 </LinearLayout>
+
