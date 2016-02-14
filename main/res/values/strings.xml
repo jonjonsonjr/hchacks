@@ -5,4 +5,6 @@
     <string name="student_id">Student ID</string>
     <string name="reading_level">Reading Level</string>
     <string name="button_send">Submit</string>
+    <string name="add_student">Add Student</string>
+    <string name="add_book">Add Book</string>
 </resources>
