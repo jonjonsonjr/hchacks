@@ -75,7 +75,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
   @Override
   public void onClick(View v) {
     if (v.getId() == R.id.read_barcode) {
-      new BooksSample().execute("9780060589462");
+      //new ISBNLookupTask().execute("9780060589462");
       new AlertDialog.Builder(this)
           .setMessage("Are you " + getUser(number.getText().toString()) + "?")
           .setIcon(android.R.drawable.ic_dialog_alert)

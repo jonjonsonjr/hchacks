@@ -33,21 +33,18 @@ import java.text.NumberFormat;
  * Java can be used to query Google Books. It accepts queries in the command
  * line, and prints the results to the console.
  * <p/>
- * $ java com.google.sample.books.BooksSample [--author|--isbn|--title] "<query>"
+ * $ java com.google.sample.books.ISBNLookupTask [--author|--isbn|--title] "<query>"
  * <p/>
  * Please start by reviewing the Google Books API documentation at:
  * http://code.google.com/apis/books/docs/getting_started.html
  */
-public class BooksSample extends AsyncTask<String, Void, Void> {
+public class ISBNLookupTask extends AsyncTask<String, Void, Void> {
 
   /**
    * Be sure to specify the name of your application. If the application name is {@code null} or
    * blank, the application will log a warning. Suggested format is "MyCompany-ProductName/1.0".
    */
-  private static final String APPLICATION_NAME = "";
-
-  private static final NumberFormat CURRENCY_FORMATTER = NumberFormat.getCurrencyInstance();
-  private static final NumberFormat PERCENT_FORMATTER = NumberFormat.getPercentInstance();
+  private static final String APPLICATION_NAME = "iBrowse";
 
   private static void queryGoogleBooks(JsonFactory jsonFactory, String query) throws Exception {
     String API_KEY = "AIzaSyBUr6gqSA6w6hBBAbPjEDUoB7qqDwzntus";
@@ -71,7 +68,6 @@ public class BooksSample extends AsyncTask<String, Void, Void> {
     // Output results.
     for (Volume volume : volumes.getItems()) {
       Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
-      System.out.println("==========");
       // Title.
       System.out.println("Title: " + volumeInfo.getTitle());
       // Author(s).
@@ -86,7 +82,10 @@ public class BooksSample extends AsyncTask<String, Void, Void> {
         }
         System.out.println();
       }
-      System.out.println(volumeInfo.getImageLinks().getMedium());
+      // Thumbnail.
+      if (volumeInfo.getImageLinks() != null && volumeInfo.getImageLinks().getThumbnail() != null) {
+        System.out.println(volumeInfo.getImageLinks().getThumbnail());
+      }
     }
   }
 

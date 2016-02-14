@@ -43,7 +43,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
 
-import me.kglawrence.keri.ibrowse.BooksSample;
+import me.kglawrence.keri.ibrowse.ISBNLookupTask;
 import me.kglawrence.keri.ibrowse.R;
 import me.kglawrence.keri.ibrowse.barcodereader.ui.camera.CameraSource;
 import me.kglawrence.keri.ibrowse.barcodereader.ui.camera.CameraSourcePreview;
@@ -351,7 +351,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
       barcode = graphic.getBarcode();
       if (barcode != null) {
         if (mScanBooks) {
-            new BooksSample().execute(barcode.displayValue);
+            new ISBNLookupTask().execute(barcode.displayValue);
         } else {
           Intent data = new Intent();
           data.putExtra(BarcodeObject, barcode);
