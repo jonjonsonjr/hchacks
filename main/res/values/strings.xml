@@ -7,10 +7,11 @@
     <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
     <string name="title_activity_main">Barcode Reader Sample</string>
     <string name="barcode_header">Enter your number</string>
-    <string name="read_barcode">Check Mark</string>
+    <string name="read_barcode">✓</string>
     <string name="auto_focus">Auto Focus</string>
     <string name="use_flash">Use Flash</string>
     <string name="barcode_success">Barcode read successfully</string>
     <string name="barcode_failure">No barcode captured</string>
     <string name="barcode_error">"Error reading barcode: %1$s"</string>
+    <string name="pick_student">Which student?</string>
 </resources>

@@ -39,7 +39,6 @@ import me.kglawrence.keri.ibrowse.barcodereader.BarcodeCaptureActivity;
 public class MainActivity extends Activity implements View.OnClickListener {
 
   // use a compound button so either checkbox or switch widgets work.
-  private TextView statusMessage;
   private TextView barcodeValue;
   private GridLayout gridLayout;
   private TextView number;
@@ -52,7 +51,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    statusMessage = (TextView) findViewById(R.id.status_message);
     barcodeValue = (TextView) findViewById(R.id.barcode_value);
     gridLayout = (GridLayout) findViewById(R.id.grid);
     number = (TextView) findViewById(R.id.text);
@@ -152,17 +150,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
           Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
           String userId = data.getStringExtra(BarcodeCaptureActivity.UserId);
 
-          statusMessage.setText(userId + " read barcode");
-          barcodeValue.setText(barcode.displayValue);
+          barcodeValue.setText(userId + " - " + barcode.displayValue);
           Log.d(TAG, "Barcode read: " + barcode.displayValue);
 
           //chooch(barcode.displayValue);
         } else {
-          statusMessage.setText(R.string.barcode_failure);
+          barcodeValue.setText(R.string.barcode_failure);
           Log.d(TAG, "No barcode captured, intent data is null");
         }
       } else {
-        statusMessage.setText(String.format(getString(R.string.barcode_error),
+        barcodeValue.setText(String.format(getString(R.string.barcode_error),
             CommonStatusCodes.getStatusCodeString(resultCode)));
       }
     } else {

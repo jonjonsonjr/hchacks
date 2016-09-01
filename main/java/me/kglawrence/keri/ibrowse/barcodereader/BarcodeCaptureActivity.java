@@ -75,6 +75,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
   public static final String UseFlash = "UseFlash";
   public static final String UserId = "UserId";
   public static final String ScanBooks = "ScanBooks";
+  public static final String ReturnBooks = "ReturnBooks";
   public static final String BarcodeObject = "Barcode";
 
   private CameraSource mCameraSource;
@@ -82,6 +83,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
   private GraphicOverlay<BarcodeGraphic> mGraphicOverlay;
   private String mUserId;
   private boolean mScanBooks;
+  private boolean mReturnBooks;
 
   // helper objects for detecting taps and pinches.
   private ScaleGestureDetector scaleGestureDetector;
@@ -99,10 +101,11 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
     mGraphicOverlay = (GraphicOverlay<BarcodeGraphic>) findViewById(R.id.graphicOverlay);
 
     // read parameters from the intent used to launch the activity.
-    boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, false);
+    boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, true);
     boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
     mUserId = getIntent().getStringExtra(UserId);
-    mScanBooks = getIntent().getBooleanExtra(ScanBooks, true);
+    mScanBooks = getIntent().getBooleanExtra(ScanBooks, false);
+    mReturnBooks = getIntent().getBooleanExtra(ReturnBooks, true);
 
     // Check for the camera permission before accessing the camera.  If the
     // permission is not granted yet, request permission.
@@ -286,7 +289,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
     if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
       Log.d(TAG, "Camera permission granted - initialize the camera source");
       // we have permission, so create the camerasource
-      boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, false);
+      boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, true);
       boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
       createCameraSource(autoFocus, useFlash);
       return;
@@ -351,7 +354,15 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
       barcode = graphic.getBarcode();
       if (barcode != null) {
         if (mScanBooks) {
-            new ISBNLookupTask().execute(barcode.displayValue);
+          new ISBNLookupTask().execute(barcode.displayValue);
+        } else if (mReturnBooks) {
+          // getBook()
+          // if (size > 1) showDialog()
+          // updateBook()
+          createDialog().show();
+          Snackbar.make(mGraphicOverlay, "Returned " + barcode.displayValue,
+              Snackbar.LENGTH_LONG)
+              .show();
         } else {
           Intent data = new Intent();
           data.putExtra(BarcodeObject, barcode);
@@ -366,6 +377,20 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
       Log.d(TAG, "no barcode detected");
     }
     return barcode != null;
+  }
+
+  private Dialog createDialog() {
+    final String[] students = {"Alice", "Bob", "Carol"};
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle(R.string.pick_student)
+        .setItems(students, new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {
+            // The 'which' argument contains the index position
+            // of the selected item
+            Log.d(TAG, students[which]);
+          }
+        });
+    return builder.create();
   }
 
   private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
